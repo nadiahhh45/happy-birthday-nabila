@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Card for Nabila</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff0f6;
+      overflow: hidden;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1.2rem;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      text-align: center;
+      width: 120px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .wish {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      background-color: #ffe6f0;
+    }
+
+    .wish h1 {
+      font-size: 3rem;
+      color: #ff1493;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+      background-size: cover;
+      animation: fall linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page" id="pinPage">
+    <h1>Enter PIN</h1>
+    <input type="password" id="pinInput" maxlength="4" placeholder="****">
+    <button onclick="checkPin()">Open</button>
+  </div>
+
+  <div class="wish" id="wishPage">
+    <h1>🎉 Happy Birthday Nabila! 🎉</h1>
+  </div>
+
+  <script>
+    function checkPin() {
+      var pin = document.getElementById("pinInput").value;
+      if (pin === "2505") {
+        document.getElementById("pinPage").style.display = "none";
+        document.getElementById("wishPage").style.display = "flex";
+        createConfetti();
+      } else {
+        alert("Wrong PIN. Try again!");
+      }
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        confetti.style.top = "-50px";
+        document.body.appendChild(confetti);
+      }
+    }
+  </script>
+
+</body>
+</html>
